@@ -42,7 +42,7 @@ class ScriptFetcher(object):
             else:
                 name_of_file = name_of_file.replace('.js', '(1).js')
 
-        with open(os.path.join(new_file_path, 'w+') as target_file:
+        with open(new_file_path, 'w+') as target_file:
             target_file.write(script)  
 
     def get_script_files(self, table, script_field, name_field):
