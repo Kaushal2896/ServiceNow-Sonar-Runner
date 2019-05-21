@@ -1,11 +1,13 @@
 import setuptools
 setuptools.setup(
-    name="sonar-uploader",
+    name="snownar",
+    packages=['ServiceNow-Sonar-Runner'],
+    package_dir={'ServiceNow-Sonar-Runner': 'src'}
     version="0.0.1",
     author="kaushal28",
+    entry_points={'console_scripts': ['ServiceNow-Sonar-Runner = src.__main__:main' ]}
     author_email="shah.kaushal95@gmail.com",
-    description="A small example package",
-    long_description_content_type="text/markdown",
+    description="ServiceNow sonar uploader package",
     install_requires=[
         'argparse',
         'paramiko == 2.4.2',
