@@ -3,7 +3,7 @@ setuptools.setup(
     name="sonar-uploader",
     version="0.0.1",
     author="kaushal28",
-    author_email="kaushal.shah95@gmail.com",
+    author_email="shah.kaushal95@gmail.com",
     description="A small example package",
     long_description_content_type="text/markdown",
     install_requires=[
