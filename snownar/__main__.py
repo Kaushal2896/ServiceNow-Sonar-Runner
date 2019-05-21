@@ -1,4 +1,4 @@
-import os, argparse
+import os, argparse, shutil
 from sonar_runner import SonarScanner
 from script_fetcher import ScriptFetcher
 
@@ -28,3 +28,5 @@ if __name__ == '__main__':
     scanner = SonarScanner(arguments.s, arguments.u, arguments.p)
     scanner.generate_props(prop_loc, proj_id, project_name)
     scanner.upload_dir(remote_loc)
+
+    shutil.rmtree(prop_loc)
