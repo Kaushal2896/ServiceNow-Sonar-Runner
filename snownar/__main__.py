@@ -10,13 +10,14 @@ if __name__ == '__main__':
     parser.add_argument('-p', help = 'Password of provided Sonar Qube configured instance', default = 'sonar')
     parser.add_argument('-n', help = 'Name of project to be displayed on sonar Qube dashboard')
     parser.add_argument('-i', help = 'Unique project id for Sonar Qube')
+    parser.add_argument('-g', help = 'Location of git repository to fetch code files from')
     parser.add_argument('-l', help = 'Location of code directory to be placed in Sonar instance', default = '/home/sonar/servicenow')
 
     arguments = parser.parse_args()
 
     project_name = arguments.n
     proj_id = arguments.i
-    git_loc = '.'
+    git_loc = arguments.g
     target_dir_loc = '.'
     prop_loc = os.path.join(target_dir_loc, project_name)
     remote_loc = arguments.l
