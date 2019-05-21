@@ -4,6 +4,7 @@ import os, re
 class ScriptFetcher(object):
 
     file_ext = '.js'
+    duplication_regex = r'.*?\((\d+)\)\.js'
 
     def __init__(self, project_name, git_repo_loc):
         self.scripts = Scripts().get_scripts()
@@ -31,7 +32,17 @@ class ScriptFetcher(object):
     def save_as_file(self, script, name_of_file, target_dir_loc, table):
         if not os.path.exists(os.path.join(target_dir_loc, table)):
             os.mkdir(os.path.join(target_dir_loc, table))
-        with open(os.path.join(target_dir_loc, table, name_of_file.replace('/', '-')) + self.file_ext, 'w+') as target_file:
+
+        new_file_path = os.path.join(target_dir_loc, table, name_of_file.replace('/', '-')) + self.file_ext
+
+        if os.path.isfile(new_file_path):
+            regex_match_res = re.search(self.duplication_regex, new_file_path)
+            if regex_match_res:
+                name_of_file = name_of_file.replace(self.duplication_regex, int(regex_match_res)+1)
+            else:
+                name_of_file = name_of_file.replace('.js', '(1).js')
+
+        with open(os.path.join(new_file_path, 'w+') as target_file:
             target_file.write(script)  
 
     def get_script_files(self, table, script_field, name_field):
