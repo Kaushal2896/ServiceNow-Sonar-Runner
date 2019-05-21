@@ -31,7 +31,7 @@ class ScriptFetcher(object):
     def save_as_file(self, script, name_of_file, target_dir_loc, table):
         if not os.path.exists(os.path.join(target_dir_loc, table)):
             os.mkdir(os.path.join(target_dir_loc, table))
-        with open(os.path.join(target_dir_loc, table, name_of_file) + self.file_ext, 'w+') as target_file:
+        with open(os.path.join(target_dir_loc, table, name_of_file.replace('/', '-')) + self.file_ext, 'w+') as target_file:
             target_file.write(script)  
 
     def get_script_files(self, table, script_field, name_field):
