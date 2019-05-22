@@ -11,7 +11,6 @@ setuptools.setup(
     install_requires=[
         'argparse',
         'paramiko == 2.4.2',
-        'scp == 0.13.2',
-        'shutil'
+        'scp == 0.13.2'
    ],
 )
