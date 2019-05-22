@@ -1,5 +1,6 @@
 from script_objs import Scripts
-import os, re
+import os, re, tempfile
+import itertools as it
 
 class ScriptFetcher(object):
 
@@ -33,14 +34,17 @@ class ScriptFetcher(object):
         if not os.path.exists(os.path.join(target_dir_loc, table)):
             os.mkdir(os.path.join(target_dir_loc, table))
 
-        new_file_path = os.path.join(target_dir_loc, table, name_of_file.replace('/', '-')) + self.file_ext
+        name_of_file = name_of_file.replace('/', '-')
+        new_file_path = os.path.join(target_dir_loc, table, name_of_file) + self.file_ext
 
         if os.path.isfile(new_file_path):
-            regex_match_res = re.search(self.duplication_regex, new_file_path)
-            if regex_match_res:
-                name_of_file = name_of_file.replace(self.duplication_regex, int(regex_match_res)+1)
-            else:
-                name_of_file = name_of_file.replace('.js', '(1).js')
+            dup_count = 0
+            for filename in os.listdir(os.path.join(target_dir_loc, table)):
+                if name_of_file in filename:
+                    dup_count += 1
+            name_of_file = name_of_file + '({0})'.format(dup_count)
+            
+        new_file_path = os.path.join(target_dir_loc, table, name_of_file) + self.file_ext
 
         with open(new_file_path, 'w+') as target_file:
             target_file.write(script)  

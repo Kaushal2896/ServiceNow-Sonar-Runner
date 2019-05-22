@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     project_name = arguments.n
     proj_id = arguments.i
-    git_loc = arguments.g
+    git_loc = 'C:\\Users\\Aspire5\\Desktop\\Sonar Uploader\\trustar-app-for-servicenow'
     target_dir_loc = '.'
     prop_loc = os.path.join(target_dir_loc, project_name)
     remote_loc = arguments.l
